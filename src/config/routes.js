@@ -2,11 +2,13 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
-import Intake from '../screens/Intake';
+import Intake from '../screens/Intake1';
 import Home from '../screens/Home';
 import Orders from '../screens/Orders';
 
 const Stack = createNativeStackNavigator();
+
+console.log('Intake component:', Intake);
 
 export default function AppNavigator() {
   return (

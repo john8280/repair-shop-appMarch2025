@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, ScrollView, Alert, ActivityIndicator } from 'react-native';
-import CheckBox from '@react-native-community/checkbox'; // Updated import
+import { CheckBox } from '@react-native-community/checkbox';
 import { useNavigation } from '@react-navigation/native';
 import { db } from '../firebase/firebase'; // Import Firestore
 import { collection, addDoc } from 'firebase/firestore'; // Firestore functions
@@ -153,14 +153,15 @@ export default function IntakeScreen() {
       {/* Common Issues */}
       <Text style={styles.sectionTitle}>Common Issues</Text>
       {commonIssues.map((issue, index) => (
-        <View key={index} style={styles.checkboxContainer}>
-          <CheckBox
-            value={selectedIssues.includes(issue)}
-            onValueChange={() => handleIssueToggle(issue)}
-            style={styles.checkbox}
-          />
-          <Text style={styles.checkboxText}>{issue}</Text>
-        </View>
+        <CheckBox
+          key={index}
+          title={issue}
+          checked={selectedIssues.includes(issue)}
+          onPress={() => handleIssueToggle(issue)}
+          containerStyle={styles.checkbox}
+          textStyle={styles.checkboxText}
+          checkedColor="#cc0000"
+        />
       ))}
 
       {/* Submit Button */}
@@ -207,13 +208,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#cc0000'
   },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
   checkbox: {
-    marginRight: 10,
+    backgroundColor: 'transparent',
+    borderWidth: 0,
+    margin: 0,
+    padding: 0,
   },
   checkboxText: {
     fontWeight: 'normal',
